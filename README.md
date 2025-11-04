@@ -1,6 +1,7 @@
 # Swarmy: Swarm Intelligence Simulation
 
 A Python package implementing a swarm intelligence simulation where agents use distance-limited communication ("shouts") to collectively gather resources without centralized control.
+Inspired by this [Video](https://www.youtube.com/watch?v=Yu7sF9rcVJY)
 
 ## Overview
 
