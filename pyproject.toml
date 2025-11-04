@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "swarmy"
+version = "1.0.0"
+description = "A swarm intelligence simulation using distance-limited communication"
+readme = "README.md"
+authors = [
+    {name = "Swarm Intelligence Research", email = "contact@swarmy.dev"}
+]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+keywords = ["swarm intelligence", "multi-agent", "simulation", "emergent behavior"]
+requires-python = ">=3.7"
+dependencies = [
+    "numpy>=1.19.0",
+]
+
+[project.optional-dependencies]
+visualization = ["pygame>=2.0.0"]
+analysis = ["matplotlib>=3.3.0", "pandas>=1.1.0", "seaborn>=0.11.0"]
+dev = [
+    "pytest>=6.0.0",
+    "pytest-cov>=2.10.0",
+    "black>=21.0",
+    "flake8>=3.8.0",
+    "mypy>=0.900",
+]
+all = ["swarmy[visualization,analysis,dev]"]
+
+[project.urls]
+Homepage = "https://github.com/crismicheli/swarmy"
+Repository = "https://github.com/crismicheli/swarmy"
+"Bug Tracker" = "https://github.com/crismicheli/swarmy/issues"
+Documentation = "https://swarmy.readthedocs.io"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--cov=swarmy --cov-report=html --cov-report=term"
+
+[tool.black]
+line-length = 100
+target-version = ['py37', 'py38', 'py39', 'py310']
+
+[tool.mypy]
+python_version = "3.7"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
