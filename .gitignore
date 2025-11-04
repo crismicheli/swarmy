@@ -55,3 +55,9 @@ benchmarks/results/*
 !benchmarks/results/.gitkeep
 .env
 .env.local
+
+# Local docs
+GIT-INSTRUCTIONS.md
+priority1-setup.md
+priority3-utils-setup.md
+
