@@ -1,0 +1,2 @@
+# swarmy
+Swarm intelligence simulator
