@@ -2,11 +2,11 @@
 numpy>=1.19.0
 
 # Optional visualization
-# pygame>=2.0.0
+pygame>=2.0.0
 
 # Optional analysis
-# matplotlib>=3.3.0
-# pandas>=1.1.0
+matplotlib>=3.3.0
+pandas>=1.1.0
 
 # Development
 # pytest>=6.0.0
