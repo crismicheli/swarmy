@@ -57,7 +57,7 @@ benchmarks/results/*
 .env.local
 
 # Local docs
-GIT-INSTRUCTIONS.md
-priority1-setup.md
-priority3-utils-setup.md
+_localdocs/
+
+
 
