@@ -1,0 +1,141 @@
+Hi everyone! Today I’m going to show  
+you my experiment on using swarm intelligence. I’ve called the project "Screaming Insects".
+I’d like to note that the exact definition of  swarm intelligence is still not formulated.
+Let's open Wikipedia and read the definition:
+The agents follow simple rules, and although there  is no centralized control structure dictating how  
+individual agents should behave, local, and to  a certain degree random, interactions between  
+such agents lead to the emergence of "intelligent"  global behavior, unknown to the individual agents
+By intelligence here, we mean not that  a swarm of agents will begin to raise  
+philosophical questions, but the fact that they  will jointly solve a problem, the solution of  
+which is not obvious from a simple algorithm of  the agent, but is revealed in their joint actions.
+Well, here’s today's task  for the "Screaming Insects":  
+to look for resources and  deliver them to the base.
+On the right side of the screen, you see what  we're going to have at the end of the video. 
+The agents are looking for resources  and deliver them to the base. 
+The agent's algorithm is very simple; the agent is  blind, walks crookedly, and can only contact the  
+nearest agents, but acting together, they quickly  find a resource and a short path to the base.
+The topic is very interesting. Researchers  are trying different approaches. 
+In my opinion, this will become widespread when  the agents are located on different physical  
+devices and there will be a problem  in creating a centralized management.
+Let’s get back to the "Screaming Insects" project.
+This is our agent. He has a direction, and his  task is to run between point A and point B. 
+Now he needs to find point A. Since there are only 2 points,  
+the agent has 2 counters, in which the estimated  number of steps to each point is recorded.
+With each turn, these counters increase by one,  no matter which direction the agent is going. 
+And with every turn, he shouts out the  value of one of his counters plus 50. 
+50 is the maximum distance at  which his scream can be heard. 
+He sort of notifies everyone who hears him  that there is the same number of steps to this  
+point as for him, plus an additional 50 steps. The agent doesn’t see anything, moves by touch,  
+and must bump into an item to understand  that he has arrived at his destination. 
+Here, the Agent has bumped into one  of the items, perhaps by accident. 
+He is resetting the counter  corresponding to this item. 
+If this is exactly the item that he has been  looking for, he will turn 180 degrees and continue  
+to move on. Now he needs to find point B. And here is where the magic happens. 
+He is heard by the second agent  located within a radius of 50 steps. 
+The second agent compares the value he  hears with the value from his counter. 
+If the values ​​heard are less, the second agent  updates his counter corresponding to point A, that  
+is, he writes down the value that he has heard. Now he believes that there are 51 steps from  
+him to point A. 50 steps to the  
+first agent and one more step to point A. If the second agent was moving to point A,  
+then he would turn in the direction of the  shouting, but now he is going to point B. 
+Now the second agent notifies the others  that they are 101 steps from point A. 
+That is, 50 steps to reach it, and  from there to point A – 51 steps. 
+This was heard by the third agent. He updates  his counter, and as he is going to point A,  
+he turns in the direction of shouting. Please note that the direction of the third  
+agent has become even worse than before. This will often happen locally. 
+But globally, abstract swarm intelligence will  see the whole picture through the gradient of  
+counter values ​​for agents, and as a result,  all agents will reach their destination.
+So, here’s the Agent’s algorithm: Take a step and increase all the counters by one. 
+If you bump into one of the items,  reset the respective counter. 
+If this is the destination you were willing  to reach, turn around 180 degrees and  
+change the destination objective in your head. Shout out the value of one of your counters plus  
+the maximum distance you can be heard at. Listen to what the others are shouting. 
+If you have heard a value less than in  your counter, update the respective counter 
+and turn in the direction of the  shouting if you need to reach this place.
+First implementation 
+Here, the agent must shuttle  between the two bases. 
+The operation principle is slightly  different from what I have described before,  
+but the picture has turned out to be  interesting, so I will show it here. 
+There are 1600 agents on the field, and a shout  out can be heard at a distance of 38 pixels. 
+To understand the scale, I will  put a ruler with a scale of 38  
+pixels and circles with the same radius. Lines will be displayed on the screen,  
+connecting the one who shouts  and the one who is listening,  
+provided that the shouting  has led to counter update.
+The main difference is that the agent only  shouts out when one of his counters is updated,  
+so the initialization of the shout  wave comes from one of the bases. 
+And then the wave passes where the  distance between the agents allows. 
+After some time, something  like paths begin to form. 
+I'm starting the video.
+Most of the time, agents walk in silence,  
+but even such uncommunicative agents  have managed to build a path in the end. 
+Critically important here is the number of agents  per unit area and also the range of the shout out. 
+Reducing the distance even by one pixel leads to  the fact that the path is created much longer. 
+Now I've sped up the playback for you to see that  over time, the path tends to become straight. 
+Also, the system has a feature that is a  direct consequence of the operation principles:  
+in the presence of two paths, the  longer path dies off immediately.
+In the end, I have come to the  conclusion that with each turn,  
+agents should report the state  of one of their counters.
+Now I will show you some interesting points  that I have pointed out during the experiments. 
+We have two blue bases on the right side  and orange resources on the left side. 
+Let’s launch the agents. The agents have found all  
+the targets, but look what happens. The central resource is closer to the  
+bases than other resources, and therefore, the  agents prefer to go only to where it’s located. 
+And the central resource is closer to  the higher base, so the agents prefer  
+to carry the resource to this base. This is exactly the feature I was  
+talking about: long paths die off quickly. Sometimes it's helpful, sometimes it's harmful. 
+For example, in the final implementation,  each agent is assigned exactly which of  
+the resources he should bring so that he  is not distracted by the nearest ones.
+And one more thing. The path has been  formed. I put the resource next to the path,  
+but since the agents are blind, they will walk by. 
+Therefore, in the final version, some  of the agents are scouts who do not  
+deliver the resource, but simply survey the  surroundings and help transmit messages. 
+ And here’s one more trick. The resource has disappeared,  
+and now the agents begin to move in a wide  fanю This helps to find the resource faster. 
+And this happens because after each step,  
+they randomly change direction by a  small angle. They cannot walk straight. 
+See what would happen if  they could walk straight.  
+And the last moment here: the agents  should not only walk crookedly,  
+but they should also have different speeds. 
+If you set the same speed for everyone,  the path often gets destroyed,  
+turning into a group that roams to one  point and then all together to another.
+It seems that we have mentioned all the points,  
+and now we are moving on to the final  implementation of the “Screaming Insects” project.
+So, the Legend goes as follows: There are three types of resources:  
+red, green, and blue. These are agents going  
+after a red, green, and blue resource. And this is how they look like when  
+they have grabbed the resource and  are carrying it back to the Queen. 
+Also, among the agents, there are scouts who move  
+around the area and don’t have a  particular goal to find resources. 
+But if they bump into a resource,  they carry it to the Queen. 
+And this is the Queen; the circle in  the center shows her health state.
+Let’s go.
+To challenge it a bit, resources  are constantly moving, moreover,  
+the Queen herself is constantly on the move,  shifting towards the furthest resource.
+The agents have a lifespan,  and eventually, they will die. 
+But the Queen, if all the three resources  are brought to her, can create a new agent. 
+Or, with some probability, she can spend  the resource on extending her life. 
+Besides, any agent, being 1000 steps from  the Queen, can declare himself the Queen, 
+start shouting around the district  that the Queen is only 50 steps away,  
+take resources from the approaching  agents, and create new ones. 
+On the screen, you can already  see how new Queens are appearing.
+By the way, the agents don’t  care about whose Queen it is,  
+and carry resources to where it is closer.
+Newly emerged Queens need to quickly get all the  
+three resources to have enough  time to prolong their lives. 
+It all depends on good luck. It is necessary to  be close to resources and have many agents nearby.
+Resources are of a fairly small capacity, a swarm  of agents devastates them in just a few seconds. 
+Few resources manage to get away if  they are discovered by the swarm.  
+The only salvation is if the same resources are  located nearby and the agents switch to them.
+Well, next I’ll share my fantasies.
+There are caravans, so you need to learn how  to rob them and take the prey to your Queen.
+Or we can create an economic simulation. Each  Queen sets her own price for each resource. 
+The agent must decide whether to carry them close,  but be paid cheap, or move them far, but for a  
+high price, although facing a risk to be robbed. And all this to save up to buy a house and retire
+Speaking of construction. I would like agents to not only carry resources,  
+but also to engage in construction. I found an algorithm online showing  
+how termites build their termite mounds. Guided by this algorithm, thousands of unorganized  
+insects build a complex multi-tiered maze as  a result. They have no plans, no blueprints.
+But I still couldn't understand it. Perhaps you have some ideas  
+on how to implement this. Please leave your comments.
+Thanks to everyone who supports us on patreon. More support, more opportunities for new projects.
+Well, that's all for now, bye everyone!
