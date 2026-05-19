@@ -85,34 +85,91 @@ python basic_simulation.py
 ## Package Structure
 
 ```
-swarmy/
-├── __init__.py                    # Main package interface
-├── core/                          # Core simulation (no visualization)
-│   ├── __init__.py
-│   ├── agent.py                   # Agent class with counter logic
-│   ├── queen.py                   # Queen class for bases
-│   ├── resource.py                # Resource class
-│   ├── simulation.py              # Main simulation engine
-│   └── utils.py                   # Utility functions
-├── config/                        # Configuration management
-│   ├── __init__.py
-│   └── config.py                  # SimulationConfig class
-└── visualization/                 # Visualization module (separate)
-    ├── __init__.py
-    ├── renderer_base.py          # Abstract renderer
-    ├── pygame_renderer.py        # Pygame implementation
-    └── matplotlib_renderer.py    # Matplotlib implementation
+Directory structure:
+└── repo swarmy/
+    ├── README.md
+    ├── CONTRIBUTING.md
+    ├── LICENSE
+    ├── pyproject.toml
+    ├── requirements.txt
+    ├── setup.py
+    ├── docker/
+    │   └── .gitkeep
+    ├── docs/
+    │   ├── EXAMPLES.md
+    │   ├── Makefile
+    │   ├── UTILS.md
+    │   └── source/
+    │       ├── conf.py
+    │       ├── index.rst
+    │       ├── installation.rst
+    │       ├── quickstart.rst
+    │       ├── api/
+    │       │   ├── config.rst
+    │       │   ├── core.rst
+    │       │   └── utils.rst
+    │       ├── theory/
+    │       │   ├── algorithm.rst
+    │       │   └── swarm_intelligence.rst
+    │       └── tutorials/
+    │           ├── basic_usage.rst
+    │           ├── custom_scenarios.rst
+    │           └── extending.rst
+    ├── examples/               # Example scripts
+    │   ├── api_usage.py        # Comprehensive API usage
+    │   ├── basic_simulation.py # Basic example
+    │   ├── batch_simulation.py
+    │   ├── custom_behavior.py
+    │   ├── multi_queen.py      # Multiple queens scenario
+    │   ├── optimization_study.py
+    │   ├── parameter_sweep.py
+    │   └── visualization_demo.py
+    ├── notebooks/
+    │   └── .gitkeep
+    │     
+    ├── swarmy/
+    │   ├── __init__.py         # Main package interface
+    │   ├── analysis/
+    │   │   └── .gitkeep
+    │   ├── config/             # Configuration management
+    │   │   ├── __init__.py
+    │   │   └── config.py       # SimulationConfig class
+    │   ├── core/
+    │   │   ├── __init__.py
+    │   │   ├── agent.py        # Agent class with counter logic
+    │   │   ├── queen.py        # Queen class for bases
+    │   │   ├── resource.py     # Resource class
+    │   │   ├── simulation.py   # Main simulation engine
+    │   │   └── utils.py        # Utility functions
+    │   ├── utils/
+    │   │   ├── __init__.py
+    │   │   ├── io.py
+    │   │   ├── metrics.py
+    │   │   └── spatial.py
+    │   └── visualization/      # Visualization module (separate)
+    │       ├── __init__.py
+    │       ├── matplotlib_renderer.py # Matplotlib renderer implementation
+    │       ├── pygame_renderer.py # Pygame renderer implementation
+    │       └── renderer_base.py # Abstract renderer
+    ├── tests/                  # Unit tests
+    │   ├── README.md
+    │   ├── conftest.py
+    │   ├── .gitkeep
+    │   ├── integration/
+    │   │   └── test_full_simulation.py
+    │   └── unit/
+    │       ├── test_agent.py
+    │       ├── test_queen.py
+    │       ├── test_resource.py
+    │       └── test_simulation.py
+    ├── transcripts/
+    │   ├── readme.md
+    │   └── youTube.txt
+    └── .github/
+        └── workflows/
+            ├── docs.yml
+            └── tests.yml
 
-examples/                          # Example scripts
-├── basic_simulation.py           # Basic example
-├── multi_queen.py                # Multiple queens scenario
-└── api_usage.py                  # Comprehensive API usage
-
-tests/                            # Unit tests
-├── test_agent.py
-├── test_queen.py
-├── test_resource.py
-└── test_simulation.py
 ```
 
 ## Architecture
